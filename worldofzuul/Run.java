@@ -1,3 +1,5 @@
+package worldofzuul;
+
 import worldofzuul.Game;
 
 public class Run {

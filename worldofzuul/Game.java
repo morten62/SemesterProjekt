@@ -2,14 +2,14 @@ package worldofzuul;
 
 public class Game 
 {
-    private Parser parser;
+    private worldofzuul.Parser parser;
     private Room currentRoom;
         
 
     public Game() 
     {
         createRooms();
-        parser = new Parser();
+        parser = new worldofzuul.Parser();
     }
 
 
