@@ -13,14 +13,14 @@ public class Inventory {
     public void removeFromInventory(String name){
         try {
             for (int i = 0; inventory.size() < i; i++){
-                if (inventory[i].name == name){
+                if (inventory.get(i).name == name){
                     inventory.remove(i);
                     break;
                 }
             }
         }
         catch (Exception e){
-            System.out.println("\nThere is no items to remove from the inventory!\n");
+            System.out.println("\nDer er ingen ting i din inventar!\n");
         }
     }
 
@@ -28,14 +28,14 @@ public class Inventory {
     public void removeFromInventory(Item item){
         try {
             for (int i = 0; inventory.size() < i; i++){
-                if (inventory[i] == item){
+                if (inventory.get(i) == item){
                     inventory.remove(i);
                     break;
                 }
             }
         }
         catch (Exception e){
-            System.out.println("\nThere is no items to remove from the inventory");
+            System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
 
@@ -45,7 +45,7 @@ public class Inventory {
             inventory.remove(item);
         }
         catch (Exception e){
-            System.out.println("\nThere is no items to remove from the inventory");
+            System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
 }
