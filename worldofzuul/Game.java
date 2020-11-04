@@ -1,42 +1,50 @@
 package worldofzuul;
 
-public class Game 
-{
+public class Game {
     private worldofzuul.Parser parser;
     private Room currentRoom;
         
 
-    public Game() 
-    {
+    public Game() {
         createRooms();
         parser = new worldofzuul.Parser();
     }
 
+    //the rooms har set up according to the map
+    private void createRooms() {
+        Room start, cityCenter, library, wellSite, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank;
 
-    private void createRooms()
-    {
-        Room outside, theatre, pub, lab, office;
-      
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        start = new Room("Du er i dit hus og overvejer hvordan du skal løse byens vand problem");
+        cityCenter = new Room("Du er i by centeret");
+        library = new Room("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem");
+        wellSite = new Room("Det her er et perfekt sted for at bygge en brøn");
+        street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor");
+        blacksmith = new Room("Du er ved smeden");
+        carpenter = new Room("Du er ved tømrene");
+        egdeOfCity = new Room("Du er ved udkanten af byen");
+        mechanic = new Room("Du er ved mekanikeren");
+        riverbank = new Room("Du er ved flodbredden");
 
-        theatre.setExit("west", outside);
+        start.setExit("south", cityCenter);
+        cityCenter.setExit("north", start);
+        cityCenter.setExit("west", library);
+        cityCenter.setExit("south", wellSite);
+        cityCenter.setExit("east", street);
+        street.setExit("north", blacksmith);
+        street.setExit("west", cityCenter);
+        street.setExit("south", carpenter);
+        street.setExit("east", egdeOfCity);
+        egdeOfCity.setExit("north", mechanic);
+        egdeOfCity.setExit("west", street);
+        egdeOfCity.setExit("south", riverbank);
+        library.setExit("east", cityCenter);
+        wellSite.setExit("north", cityCenter);
+        blacksmith.setExit("south", street);
+        carpenter.setExit("north", street);
+        mechanic.setExit("south", egdeOfCity);
+        riverbank.setExit("north", egdeOfCity);
 
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        currentRoom = start;
     }
 
     public void play() 
