@@ -53,4 +53,16 @@ public class Inventory {
             System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
+
+    //print inventory
+    public void printInventory(){
+        if (inventory.size() != 0){
+            for (Item item : inventory){
+                System.out.print("\nGenstand: " + item.name + "\nOm genstanden: " + item.description + "\n");
+            }
+        }
+        else {
+            System.out.println("\nDer er ingen ting i din inventar!");
+        }
+    }
 }
