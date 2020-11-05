@@ -2,10 +2,10 @@ package worldofzuul;
 import java.util.ArrayList;
 
 public class Inventory {
-    public ArrayList<Item> inventory = new ArrayList<Item>();
+    public ArrayList<Items> inventory = new ArrayList<Items>();
 
     //add item and it will be placed last in the list
-    public void addToInventory(Item item){
+    public void addToInventory(Items item){
         inventory.add(item);
     }
 
@@ -25,7 +25,7 @@ public class Inventory {
     }
 
     //removes the first item which is identical
-    public void removeFromInventory(Item item){
+    public void removeFromInventory(Items item){
         if (!(inventory.size() == 0)) {
             for (int i = 0; inventory.size() < i; i++){
                 if (inventory.get(i) == item){
@@ -57,7 +57,7 @@ public class Inventory {
     //print inventory
     public void printInventory(){
         if (inventory.size() != 0){
-            for (Item item : inventory){
+            for (Items item : inventory){
                 System.out.print("\nGenstand: " + item.name + "\nOm genstanden: " + item.description + "\n");
             }
         }
