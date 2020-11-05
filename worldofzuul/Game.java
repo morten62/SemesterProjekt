@@ -26,24 +26,24 @@ public class Game
         egdeOfCity = new Room("Du er ved udkanten af byen");
         mechanic = new Room("Du er ved mekanikeren");
         riverbank = new Room("Du er ved flodbredden");
-        start.setExit("south", cityCenter);
-        cityCenter.setExit("north", start);
-        cityCenter.setExit("west", library);
-        cityCenter.setExit("south", wellSite);
-        cityCenter.setExit("east", street);
-        street.setExit("north", blacksmith);
-        street.setExit("west", cityCenter);
-        street.setExit("south", carpenter);
-        street.setExit("east", egdeOfCity);
-        egdeOfCity.setExit("north", mechanic);
-        egdeOfCity.setExit("west", street);
-        egdeOfCity.setExit("south", riverbank);
-        library.setExit("east", cityCenter);
-        wellSite.setExit("north", cityCenter);
-        blacksmith.setExit("south", street);
-        carpenter.setExit("north", street);
-        mechanic.setExit("south", egdeOfCity);
-        riverbank.setExit("north", egdeOfCity);
+        start.setExit("syd", cityCenter);
+        cityCenter.setExit("nord", start);
+        cityCenter.setExit("vest", library);
+        cityCenter.setExit("syd", wellSite);
+        cityCenter.setExit("øst", street);
+        street.setExit("nord", blacksmith);
+        street.setExit("vest", cityCenter);
+        street.setExit("syd", carpenter);
+        street.setExit("øst", egdeOfCity);
+        egdeOfCity.setExit("nord", mechanic);
+        egdeOfCity.setExit("vest", street);
+        egdeOfCity.setExit("syd", riverbank);
+        library.setExit("øst", cityCenter);
+        wellSite.setExit("nord", cityCenter);
+        blacksmith.setExit("syd", street);
+        carpenter.setExit("nord", street);
+        mechanic.setExit("syd", egdeOfCity);
+        riverbank.setExit("nord", egdeOfCity);
         currentRoom = start;
     }
 
@@ -57,15 +57,16 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
-        System.out.println("Thank you for playing.  Good bye.");
+        System.out.println("Tak for at du spillede. Farvel.");
     }
 
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Velkommen til en fantastisk dag i en brøndgravers hverdag!");
+        System.out.println("Dette er et fantastisk spil (eller som nogen siger \"It's great! It's perfect\" )");
+        System.out.println("som sidegevinst er det muligt at lære noget om udfordringerne med vand i verdens resourcesvage lande.");
+        System.out.println("Skriv '" + CommandWord.HELP + "' hvis du har brug for hjælp.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -77,7 +78,7 @@ public class Game
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("Hvad mener du...");
             return false;
         }
 
@@ -160,7 +161,7 @@ public class Game
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
+            System.out.println("Gå hvor?");
             return;
         }
 
@@ -169,7 +170,7 @@ public class Game
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
+            System.out.println("Du kan ikke gå den vej!");
         }
         else {
             currentRoom = nextRoom;
@@ -180,7 +181,7 @@ public class Game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            System.out.println("Quit hvad?");
             return false;
         }
         else {
