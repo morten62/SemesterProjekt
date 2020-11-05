@@ -15,6 +15,6 @@ public class Article extends Items {
     Article pumpArticle = new Article("Artikel om pumper",
             "Selve artiklen. Omhandler de forskellige pumper.");
     Article wellPlacement = new Article("working title Artikel om brøndsteder",
-            "Omhandler hvilke steder det er godt at placere brønde.")
+            "Omhandler hvilke steder det er godt at placere brønde.");
 
 }
