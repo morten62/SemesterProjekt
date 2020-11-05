@@ -4,7 +4,14 @@ public class Game
 {
     private worldofzuul.Parser parser;
     private Room currentRoom;
-        
+    public WellSite wellSite;
+
+    public void useItems(Items items){
+        WinCondition winCondition = new WinCondition();
+        if (items == items.shovel){
+            wellSite.updateWell(true, (byte)0);
+        }
+    }
 
     public Game() 
     {
@@ -18,8 +25,8 @@ public class Game
         Room start, cityCenter, library, wellSite, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank;
         start = new Room("Du er i dit hus og overvejer hvordan du skal løse byens vand problem");
         cityCenter = new Room("Du er i by centeret");
-        library = new Room("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem");
-        wellSite = new Room("Det her er et perfekt sted for at bygge en brøn");
+        library = new Library("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem");
+        wellSite = new WellSite("Det her er et perfekt sted for at bygge en brøn");
         street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor");
         blacksmith = new Room("Du er ved smeden");
         carpenter = new Room("Du er ved tømrene");

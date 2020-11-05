@@ -1,18 +1,12 @@
 package worldofzuul;
 
-public class Items {
-
+public class Items{
      String name;
      String description;
 
     public Items(String name, String description){
         this.name = name;
         this.description = description;
-
-    }
-
-
-    public void useItem(){
 
     }
 
@@ -31,7 +25,5 @@ public class Items {
     Items liningTree = new Items("Træforing", "Foring lavet af træ.");
     Items liningStone = new Items("Stenforing", "Foring lavet af sten.");
     Items liningConcrete = new Items("Betonforing", "Foring lavet af beton.");
-
-
 
 }
