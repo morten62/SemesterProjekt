@@ -115,6 +115,12 @@ public class Game
         System.out.println("Your command words are:");
         parser.showCommands();
     }
+/*
+  getItem()
+  Input:   command  obj. containing 2 strings commandWord and secondWord
+  Output:  void
+  Side-effect: An Item is taken from the room and put in the inventory
+*/
     private void getItem(Command command)
     {
         if(!command.hasSecondWord()) {
@@ -132,10 +138,17 @@ public class Game
         }
         else {
             inventory.addToInventory(nItem);     // #¤# add to inventory needs to be made
-            currentRoom.inventory.remove(nItem); // #¤# removes item from the room
+            currentRoom.remove(nItem);           // #¤# removes item from the room
         }
  */
     }
+/*
+  putItem()
+  Input:   command  obj. containing 2 strings commandWord and secondWord
+  Output:  void
+  Side-effect: An Item is taken from the inventory and put in the room
+*/
+
     private void putItem(Command command)
     {
         if(!command.hasSecondWord()) {
@@ -143,10 +156,10 @@ public class Game
             return;
         }
 
-        String item = command.getSecondWord();
+        String itemName = command.getSecondWord();
 /*
-        Item nItem = inventory.getItem(item); // #¤# takes a string with the name of an item in the inventor and returns
-                                              // the item, to be made in inventory
+        Item nItem = inventory.getItem(itemName); // #¤# takes a string with the name of an item in the inventor and returns
+                                                  // the item, to be made in inventory
 
         if (nItem == null) {
             System.out.println("Det er ikke i din besidelse!");
