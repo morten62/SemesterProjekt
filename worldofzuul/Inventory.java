@@ -11,7 +11,7 @@ public class Inventory {
 
     //takes a string and removes the first from list where the name fits the input
     public void removeFromInventory(String name){
-        try {
+        if (!(inventory.size() == 0)) {
             for (int i = 0; inventory.size() < i; i++){
                 if (inventory.get(i).name == name){
                     inventory.remove(i);
@@ -19,14 +19,14 @@ public class Inventory {
                 }
             }
         }
-        catch (Exception e){
+        else {
             System.out.println("\nDer er ingen ting i din inventar!\n");
         }
     }
 
     //removes the first item which is identical
     public void removeFromInventory(Item item){
-        try {
+        if (!(inventory.size() == 0)) {
             for (int i = 0; inventory.size() < i; i++){
                 if (inventory.get(i) == item){
                     inventory.remove(i);
@@ -34,17 +34,22 @@ public class Inventory {
                 }
             }
         }
-        catch (Exception e){
+        else {
             System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
 
     //removes item by index
     public void removeFromInventory(int item){
-        try {
-            inventory.remove(item);
+        if (!(inventory.size() == 0)){
+            try {
+                inventory.remove(item);
+            }
+            catch (IndexOutOfBoundsException e){
+                System.out.println("\nDer er ingen genstand som matcher det tilspurgte index! :: " + e);
+            }
         }
-        catch (Exception e){
+        else {
             System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
