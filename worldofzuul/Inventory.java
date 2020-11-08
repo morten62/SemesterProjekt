@@ -2,7 +2,7 @@ package worldofzuul;
 import java.util.ArrayList;
 
 public class Inventory {
-    public ArrayList<Items> inventory = new ArrayList<Items>();
+    public static ArrayList<Items> inventory = new ArrayList<Items>();
 
     //add item and it will be placed last in the list
     public void addToInventory(Items item){

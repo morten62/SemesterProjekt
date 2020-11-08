@@ -11,10 +11,20 @@ class WinCondition {
     Pump pumpType;
     Engine engineType;
 
+    //lining Type
     float noLiningValue = 0.2f;
     float woodLiningValue = 1f;
     float stoneLiningValue = 1.5f;
-    float brickLiningValue =
+    float brickLiningValue = 1.7f;
+
+    float handPumpValue = 1f;
+    float bucketValue = 0.2f;
+    float electricalValue = 2.5f;
+    float dieselValue = 2f;
+
+    float uponWellValue = 0.1f;
+
+    public float scoreMultiplier;
 
 
     WinCondition(){
@@ -30,6 +40,7 @@ public class WellSite extends Room {
         super(description);
     }
 
+    //byte: 0 if you want to update the hole. 1 if you want to update the bucket
     public void updateWell(boolean condition, byte updateType){
         if (updateType == (byte)0){
             winCondition.isThereAHole = condition;
@@ -51,13 +62,58 @@ public class WellSite extends Room {
         winCondition.pumpType = pump;
     }
 
-    public void checkIfDone(){
-        if (winCondition.isThereABucket && winCondition.isThereAHole){
-            //win
+    //run through the win conditions and return the total value of the score
+    public int returnScore(int score) throws Exception{
+
+        //check all of the liningstypes
+        if (winCondition.ligningType == Lining.noLining){
+            winCondition.scoreMultiplier *= winCondition.noLiningValue;
         }
-        else if (winCondition.pumpType != Pump.noPump){
-            //win
+        else if (winCondition.ligningType == Lining.wood){
+            winCondition.scoreMultiplier *= winCondition.woodLiningValue;
         }
+        else if (winCondition.ligningType == Lining.stone){
+            winCondition.scoreMultiplier *= winCondition.stoneLiningValue;
+        }
+        else if (winCondition.ligningType == Lining.brick){
+            winCondition.scoreMultiplier *= winCondition.brickLiningValue;
+        }
+        else {
+            throw new Exception("Unable to come decide liningType in WellSite.java");
+        }
+
+        //check how the player take the water up from the well
+        if (winCondition.pumpType != Pump.noPump){
+            if (winCondition.pumpType == Pump.handPump){
+                winCondition.scoreMultiplier *= winCondition.handPumpValue;
+            }
+            else if (winCondition.pumpType == Pump.mechanicPump && winCondition.engineType != Engine.noEngine){
+                if (winCondition.engineType == Engine.electrical){
+                    winCondition.scoreMultiplier *= winCondition.electricalValue;
+                }
+                else if (winCondition.engineType == Engine.diesel){
+                    winCondition.scoreMultiplier *= winCondition.dieselValue;
+                }
+                else {
+                    throw new Exception("Unable to decide on the Enginetype in WellSite.java");
+                }
+            }
+            else {
+                System.out.println("Du har brug for en motor til at kunne kører en mekanisk pumpe");
+            }
+        }
+        else if (winCondition.isThereABucket && winCondition.isThereAHole){
+            winCondition.scoreMultiplier *= winCondition.bucketValue;
+        }
+
+        if (winCondition.isThereAHole){
+            winCondition.scoreMultiplier *= winCondition.uponWellValue;
+        }
+
+        //return the score
+        return (int)((float)score * winCondition.scoreMultiplier);
+
+
         /*
         if (winCondition.ligningType == Lining.wood){
             if (winCondition.isThereAHole && winCondition.isThereABucket){
