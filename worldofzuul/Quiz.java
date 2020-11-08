@@ -26,12 +26,13 @@ public class Quiz {
             File obj = new File("Answers.txt");
             }
         catch(Exception e) {
-            System.out.println("Der er opstået en fejl");
+            System.out.println("Der er opstået en fejl: Filen kunne ikke oprettes, eller den eksister allerede");
             e.printStackTrace();
         }
     }
     // Starter quizzen ved at bestemme om det er før eller efter spillet er færdigt og indsætter resultatet i Answers.txt
     // Quizzen vil så gå igennem en for loop med alle spørgsmålene som er i det String array som bliver defineret her også.
+    // Quizzen checker om det er første gang eller anden gang den kører igennem denne quiz for at fremvise de rigtige spørgsmål.
     public void startQuiz(){
         String[] questions = {"Vil du mene at din viden af indvinding af rent drikkevand er høj?", "Vil du sige at alle mennesker i verden har lige god mulighed for rent drikkevand?", "Vil du sige at spillet har været med til at forhøje din viden om indvinding af rent drikkevand og dets udfordringer?", "Vil du sige at spillet fremvist at der er nogle steder hvor det ikke er muligt at lave en ordentlig løsning pga. ressource mangler?", "Var spillet sjovt?"};
         if (number==1){
