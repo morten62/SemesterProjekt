@@ -7,6 +7,7 @@ public class Game
     private worldofzuul.Parser parser;
     private Room currentRoom;
     public WellSite wellSite;
+    Inventory invent = new Inventory();
 
     // list of usable items, that can be added to inventory
     Items shovel = new Items("Skovl","Bruges til at grave med.");
@@ -152,7 +153,7 @@ public class Game
         }
         else if (commandWord == CommandWord.SEEINVENTORY) {
             // See the inventory
-            // printInventory();
+            invent.printInventory();
         }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -163,10 +164,10 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("Du er ganske alene og fortabt og vandrer rundt i byen");
+        System.out.println("for at finde de ting som du skal bruge.");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("Dine mulige kommandoer er:");
         parser.showCommands();
     }
 /*
@@ -182,9 +183,9 @@ public class Game
             return;
         }
 
-        String item = command.getSecondWord();
+        String itemName = command.getSecondWord();
 /*
-        Item nItem = currentRoom.getItem(item); // #¤# takes a string with the name of an item in the room and returns
+        Item nItem = currentRoom.getItem(itemName); // #¤# takes a string with the name of an item in the room and returns
                                                 // the item to be made in room
 
         if (nItem == null) {
@@ -212,7 +213,7 @@ public class Game
 
         String itemName = command.getSecondWord();
 /*
-        Item nItem = inventory.getItem(itemName); // #¤# takes a string with the name of an item in the inventor and returns
+        Item nItem = inventory.getItem(itemName); // #¤# takes a string with the name of an item in the inventory and returns
                                                   // the item, to be made in inventory
 
         if (nItem == null) {
