@@ -11,7 +11,7 @@ public class Game
 
     // list of usable items, that can be added to inventory
     Items shovel = new Items("Skovl","Bruges til at grave med.");
-    Items bucket = new Items("Spand med reb", "Denne spand har et reb bundet fast til hanken.");
+    Items bucket = new Items("Spand", "Denne spand har et reb bundet fast til hanken.");
     Items mekPump = new Items("Mekanisk pumpe", "Denne pumpe er mekanisk");
     Items dieselEngine = new Items("Dieselmotor", "Dette er en dieselmotor.");
     Items elEngine = new Items("Elmotor","Dette er en elmotor.");
@@ -81,6 +81,10 @@ public class Game
         egdeOfCity = new Room("Du er ved udkanten af byen");
         mechanic = new Room("Du er ved mekanikeren");
         riverbank = new Room("Du er ved flodbredden");
+
+        blacksmith.addItem(bucket);
+        blacksmith.addItem(mekPump);
+
         start.setExit("syd", cityCenter);
         cityCenter.setExit("nord", start);
         cityCenter.setExit("vest", library);
@@ -184,18 +188,18 @@ public class Game
         }
 
         String itemName = command.getSecondWord();
-/*
-        Item nItem = currentRoom.getItem(itemName); // #¤# takes a string with the name of an item in the room and returns
-                                                // the item to be made in room
+
+        Items nItem = currentRoom.GetItem(itemName); // #¤# takes a string with the name of an item in the room and returns
+                                                     // the item to be made in room
 
         if (nItem == null) {
             System.out.println("Det er ikke her!");
         }
         else {
-            inventory.addToInventory(nItem);     // #¤# add to inventory needs to be made
-            currentRoom.remove(nItem);           // #¤# removes item from the room
+            invent.addToInventory(nItem);        // #¤# add to inventory needs to be made
+            currentRoom.RemoveItem(itemName);    // #¤# removes item from the room
         }
- */
+
     }
 /*
   putItem()
@@ -243,6 +247,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            currentRoom.PrintItems();
         }
     }
 

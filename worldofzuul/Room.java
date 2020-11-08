@@ -63,6 +63,37 @@ public class Room {
         }
         return null;
     }
+    public void PrintItems(){
+        if (!(ItemsArrayList.size() == 0))
+        {
+            System.out.println("Der er følgende ting i dette rum: ");
+            for (int i = 0; i<ItemsArrayList.size(); i++)
+            {
+                System.out.println("   " + ItemsArrayList.get(i).name);
+            }
+        }
+        else
+        {
+            System.out.println("Der er ikke ting i dette rum");
+        }
+    }
+    public Items GetItem(String name){
+        if (!(ItemsArrayList.size() == 0))
+        {
+            for (int i = 0; i<ItemsArrayList.size(); i++)
+            {
+                if (ItemsArrayList.get(i).name == name){
+                    return ItemsArrayList.get(i);
+                }
+            }
+            return null;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }
 
 
