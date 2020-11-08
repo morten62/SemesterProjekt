@@ -1,15 +1,17 @@
 package worldofzuul;
 
-public class Game 
+import java.util.ArrayList;
+
+public class Game
 {
     private worldofzuul.Parser parser;
     private Room currentRoom;
-        
-
-    public Game() 
+    private worldofzuul.Inventory invent;
+    public Game()
     {
         createRooms();
         parser = new worldofzuul.Parser();
+        invent = new worldofzuul.Inventory();  //#¤#
     }
 
 
@@ -19,7 +21,7 @@ public class Game
         start = new Room("Du er i dit hus og overvejer hvordan du skal løse byens vand problem");
         cityCenter = new Room("Du er i by centeret");
         library = new Room("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem");
-        wellSite = new Room("Det her er et perfekt sted for at bygge en brøn");
+        wellSite = new Room("Det her er et perfekt sted for at bygge en brønd");
         street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor");
         blacksmith = new Room("Du er ved smeden");
         carpenter = new Room("Du er ved tømrene");
@@ -98,7 +100,7 @@ public class Game
         }
         else if (commandWord == CommandWord.SEEINVENTORY) {
             // See the inventory
-            // printInventory();
+            invent.printInventory();
         }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
@@ -112,7 +114,7 @@ public class Game
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("Ord du kan bruge for at bevæge dig rundt og samle ting:");
         parser.showCommands();
     }
 /*
@@ -128,27 +130,28 @@ public class Game
             return;
         }
 
-        String item = command.getSecondWord();
+        String itemName = command.getSecondWord();
 /*
-        Item nItem = currentRoom.getItem(item); // #¤# takes a string with the name of an item in the room and returns
-                                                // the item to be made in room
+        Item nItem = currentRoom.getItem(itemName); // #¤# takes a string with the name of an item in the room and returns
+                                                    // the item to be made in room
 
         if (nItem == null) {
             System.out.println("Det er ikke her!");
         }
         else {
-            inventory.addToInventory(nItem);     // #¤# add to inventory needs to be made
+            inventor.addToInventory(nItem);     // #¤# add to inventory needs to be made
             currentRoom.remove(nItem);           // #¤# removes item from the room
         }
  */
     }
+
+
 /*
   putItem()
   Input:   command  obj. containing 2 strings commandWord and secondWord
   Output:  void
   Side-effect: An Item is taken from the inventory and put in the room
 */
-
     private void putItem(Command command)
     {
         if(!command.hasSecondWord()) {
@@ -166,7 +169,7 @@ public class Game
         }
         else {
             currentRoom.addToInventory(nItem);   // #¤# add to room, needs to be made
-            inventory.removeFromInventory(nItem);// #¤# removes item from the inventory
+            inventor.removeFromInventory(nItem);// #¤# removes item from the inventory
         }
  */
     }
