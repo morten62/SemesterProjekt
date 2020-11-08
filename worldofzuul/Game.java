@@ -296,9 +296,7 @@ public class Game
             System.out.println("Det er ikke en artikel!");
         }
         else {
-            currentRoom.ReadArticle(nItem.name);   // #¤# add to room, needs to be made
-
-            //inventory.removeFromInventory(nItem);// #¤# removes item from the inventory
+            currentRoom.ReadArticle(nItem.name);
         }
     }
 
