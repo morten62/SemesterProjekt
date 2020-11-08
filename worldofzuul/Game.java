@@ -27,7 +27,7 @@ public class Game
                     " strukturen ustabil. Der findes forskellige måder at udvinde vandet på. Den mest simple måde" +
                     " er at hente vand op med en spand. Dette kan dog også gøres ved hjælp af en pumpe." +
                     " En brønd kan være åben og lukket. Åbnet er vandforsyningen let tilgængelig, men chancen for" +
-                    " forurening er høj. Er en brønd lukket er det nødvendigt med en pumpe," +
+                    " forurening er høj. Er en brsønd lukket er det nødvendigt med en pumpe," +
                     " for at etablere en vandforsyning.");
     Article liningArticle = new Article("Artikel om foring",
             "En brønd kan fores med forskellige materialer, der gør strukturen mere stabil og holdbar." +
