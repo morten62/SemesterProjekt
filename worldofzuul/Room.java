@@ -78,12 +78,16 @@ public class Room {
         }
     }
     public Items GetItem(String name){
+        String tn ="";
+        Items item;
         if (!(ItemsArrayList.size() == 0))
         {
             for (int i = 0; i<ItemsArrayList.size(); i++)
             {
-                if (ItemsArrayList.get(i).name == name){
-                    return ItemsArrayList.get(i);
+                item = ItemsArrayList.get(i);
+                tn = item.name;
+                if (tn.equals(name)){
+                    return item;
                 }
             }
             return null;
