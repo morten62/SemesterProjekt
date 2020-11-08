@@ -6,6 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Denne klasse laver og fremviser en quiz der tager brugerinput ind og printer ud på et txt dokument
+ *
+ * @author Rasmus
+ * @version 1.1
+ */
 public class Quiz {
     Scanner sc = new Scanner(System.in);
     FileWriter writeToFile;
