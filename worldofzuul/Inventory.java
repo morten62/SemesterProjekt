@@ -13,7 +13,7 @@ public class Inventory {
     public void removeFromInventory(String name){
         if (!(inventory.size() == 0)) {
             for (int i = 0; inventory.size() < i; i++){
-                if (inventory.get(i).name == name){
+                if (inventory.get(i).name.equals(name)){
                     inventory.remove(i);
                     break;
                 }
