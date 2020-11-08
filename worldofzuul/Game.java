@@ -160,6 +160,7 @@ public class Game
         }
 
         String itemName = command.getSecondWord();
+
 /*
         Item nItem = inventory.getItem(itemName); // #¤# takes a string with the name of an item in the inventor and returns
                                                   // the item, to be made in inventory
