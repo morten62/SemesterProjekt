@@ -53,7 +53,7 @@ public class Inventory {
             System.out.println("\nDer er ingen ting i din inventar!");
         }
     }
-
+    //takes an item from the inventory, so it removes the item and returns it
     public Items getItemFromInventory(String item){
         if (!(inventory.size() == 0)){
             for (int i = 0; i<inventory.size(); i++) {

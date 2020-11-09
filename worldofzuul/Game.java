@@ -196,6 +196,7 @@ public class Game
 
     private void printWelcome()
     {
+
         System.out.println();
         System.out.println("Velkommen til en fantastisk dag i en brøndgravers hverdag!");
         System.out.println("Dette er et fantastisk spil (eller som nogen siger \"It's great! It's perfect\" )");
@@ -205,7 +206,7 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
 
-    private boolean processCommand(Command command) 
+    private boolean processCommand(Command command)
     {
         boolean wantToQuit = false;
 
