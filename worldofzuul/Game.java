@@ -6,7 +6,8 @@ public class Game
 {
     private worldofzuul.Parser parser;
     private Room currentRoom;
-    public WellSite wellSite;
+    public WellSite wellSite = new WellSite("Det her er et perfekt sted for at bygge en brønd");
+    private Lining lining;
     Inventory invent = new Inventory();
 
     // list of usable items, that can be added to inventory
@@ -52,10 +53,37 @@ public class Game
                     " to typer af motorer er omtrent den samme. Dieselmotoren bruger diesel som brændstof." +
                     " Elmotoren bruger elektricitet for at køre. Dette kan opnås med en tilslutning til en" +
                     " strømkilde, heriblandt er den mest anvendte et batteri.");
-
+    //WinCondition winCondition = new WinCondition();
     public void useItems(Items items){
-        WinCondition winCondition = new WinCondition();
-        if (items == shovel){
+
+        if (items.name.equals(mekPump.name)){
+            wellSite.updateWell(Pump.mechanicPump);
+        }
+        else if (items.name.equals(handPump.name)){
+            wellSite.updateWell(Pump.handPump);
+        }
+        else if (items.name.equals(liningTree.name)){
+            wellSite.updateWell(Lining.wood);
+        }
+        else if (items.name.equals(liningStone.name)){
+            wellSite.updateWell(Lining.stone);
+        }
+        else if (items.name.equals(liningConcrete.name)){
+            wellSite.updateWell(Lining.concrete);
+        }
+        else if (items.name.equals(liningBrick.name)){
+            wellSite.updateWell(Lining.brick);
+        }
+        else if (items.name.equals(dieselEngine.name)){
+            wellSite.updateWell(Engine.diesel);
+        }
+        else if (items.name.equals(elEngine.name)){
+            wellSite.updateWell(Engine.electrical);
+        }
+        else if (items.name.equals(bucket.name)){
+            wellSite.updateWell(true, (byte)1);
+        }
+        else if (items.name.equals(shovel.name)){
             wellSite.updateWell(true, (byte)0);
         }
     }
@@ -70,12 +98,11 @@ public class Game
     private void createRooms()
     {
         ArrayList<Article> articles = new ArrayList<Article>();
-        Room start, cityCenter, library, wellSite, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank, mason;
+        Room start, cityCenter, library, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank, mason;
         start = new Room("Du er i dit hus og overvejer hvordan du skal løse byens vand problem");
         cityCenter = new Room("Du er i by centeret");
         library = new Library("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem", articles);
-        wellSite = new WellSite("Det her er et perfekt sted for at bygge en brønd");
-        street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor");
+        street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor. Du kan bruge kommandoen 'Færdig' når du har bygget din brønd");
         blacksmith = new Room("Du er ved smeden");
         carpenter = new Room("Du er ved tømrerne");
         egdeOfCity = new Room("Du er ved udkanten af byen");
@@ -184,6 +211,16 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == commandWord.FINISH){
+            try {
+                System.out.println("Din Score er: ");
+                System.out.println(wellSite.finishGame());
+            }
+            catch (Exception e){
+                System.out.println("Du opfylder ikke alle kravene for spillet");
+            }
+
+        }
 
         return wantToQuit;
     }
@@ -195,14 +232,14 @@ public class Game
         System.out.println();
         System.out.println("Dine mulige kommandoer er:");
         parser.showCommands();
-        System.out.println(currentRoom.printExitString());
-
     }
-/**
-*  getItem()
-*  Input:   command  obj. containing 2 strings commandWord and secondWord
-*  Output:  void
-*  Side-effect: An Item is taken from the room and put in the inventory
+
+
+/*
+  getItem()
+  Input:   command  obj. containing 2 strings commandWord and secondWord
+  Output:  void
+  Side-effect: An Item is taken from the room and put in the inventory
 */
     private void getItem(Command command)
     {
@@ -226,11 +263,11 @@ public class Game
         }
 
     }
-/**
-*  putItem()
-*  Input:   command  obj. containing 2 strings commandWord and secondWord
-*  Output:  void
-*  Side-effect: An Item is taken from the inventory and put in the room
+/*
+  putItem()
+  Input:   command  obj. containing 2 strings commandWord and secondWord
+  Output:  void
+  Side-effect: An Item is taken from the inventory and put in the room
 */
 
     private void putItem(Command command)
@@ -251,7 +288,7 @@ public class Game
         else {
             currentRoom.addItem(nItem);   // #¤# add to room, needs to be made
             currentRoom.PrintItems();
-            //inventory.removeFromInventory(nItem);// #¤# removes item from the inventory
+            useItems(nItem);
         }
     }
 
@@ -282,7 +319,7 @@ public class Game
         }
     }
 
-    private void goRoom(Command command) 
+    private void goRoom(Command command)
     {
         if(!command.hasSecondWord()) {
             System.out.println("Gå hvor?");
