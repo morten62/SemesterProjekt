@@ -10,19 +10,19 @@ public class Game
     Inventory invent = new Inventory();
 
     // list of usable items, that can be added to inventory
-    Items shovel = new Items("Skovl","Bruges til at grave med.");
-    Items bucket = new Items("Spand", "Denne spand har et reb bundet fast til hanken.");
-    Items mekPump = new Items("Mekanisk pumpe", "Denne pumpe er mekanisk");
-    Items dieselEngine = new Items("Dieselmotor", "Dette er en dieselmotor.");
-    Items elEngine = new Items("Elmotor","Dette er en elmotor.");
-    Items handPump = new Items("Håndpumpe", "Dette er en pumpe der betjenes med håndkraft.");
-    Items planks = new Items("Brædder", "Dette er et sæt brædder.");
-    Items liningTree = new Items("Træforing", "Foring lavet af træ.");
-    Items liningStone = new Items("Stenforing", "Foring lavet af sten.");
-    Items liningBrick = new Items("Murstensforing", "Foring lavet af mursten");
-    Items liningConcrete = new Items("Betonforing", "Foring lavet af beton.");
+    Items shovel = new Items("skovl","Bruges til at grave med.");
+    Items bucket = new Items("spand", "Denne spand har et reb bundet fast til hanken.");
+    Items mekPump = new Items("mekanisk_pumpe", "Denne pumpe er mekanisk");
+    Items dieselEngine = new Items("dieselmotor", "Dette er en dieselmotor.");
+    Items elEngine = new Items("elmotor","Dette er en elmotor.");
+    Items handPump = new Items("håndpumpe", "Dette er en pumpe der betjenes med håndkraft.");
+    Items planks = new Items("brædder", "Dette er et sæt brædder.");
+    Items liningTree = new Items("træforing", "Foring lavet af træ.");
+    Items liningStone = new Items("stenforing", "Foring lavet af sten.");
+    Items liningBrick = new Items("murstensforing", "Foring lavet af mursten");
+    Items liningConcrete = new Items("betonforing", "Foring lavet af beton.");
 
-    Article wellArticle = new Article("Artikel om brønde",
+    Article wellArticle = new Article("brøndbeskrivelse",
             "En brønd er en udgravning i jorden, der kan bruges til at opnå en vandforsyning." +
                     " En brønd kan fores med materialer som træ, sten og beton. Dette kan undlades men vil gøre" +
                     " strukturen ustabil. Der findes forskellige måder at udvinde vandet på. Den mest simple måde" +
@@ -30,24 +30,24 @@ public class Game
                     " En brønd kan være åben og lukket. Åbnet er vandforsyningen let tilgængelig, men chancen for" +
                     " forurening er høj. Er en brsønd lukket er det nødvendigt med en pumpe," +
                     " for at etablere en vandforsyning.");
-    Article liningArticle = new Article("Artikel om foring",
+    Article liningArticle = new Article("foringsvejledning",
             "En brønd kan fores med forskellige materialer, der gør strukturen mere stabil og holdbar." +
                     " Nogle af de mest anvendte er træ, sten, mursten, og beton. Træ er et billigt materiale," +
                     " men kan ved ofte kontakt med vand rådne. Sten er et holdbart materiale, men der kan let opstå" +
                     " utætheder. Mursten er lige så holdbar som sten, og med disse undgås utætheder. Dog kan mursten" +
                     " blive slidt ved kontakt med vand. Beton er det mest holdbare materiale, og giver en god " +
                     " struktur. Det er dog også et dyrt materiale.");
-    Article pumpArticle = new Article("Artikel om pumper",
+    Article pumpArticle = new Article("pumpebeskrivelse",
             "Den mest hyppige anvendte pumpe er en mekanisk pumpe. Dog er en håndpumpe også stadig anvendt" +
                     " i dag. Den mekaniske pumpe er dyrere end en håndpumpe, og kræver at der er en motor tilsluttet" +
                     " før den kan tages i brug. Dog er denne mere effektiv. Håndpumpen er mindre effektiv en den" +
                     " mekaniske, dog er prisen lavere.");
-    Article wellPlacement = new Article("Artikel om brøndplacering",
+    Article wellPlacement = new Article("brøndplaceringer",
             "En brønd kan placeres mange steder. Det er oftest bedst at placere brønde, væk fra andre" +
                     " vandkilder, såsom søer og floder, da forurening fra andre kilder kan forværre vandkvaliteten" +
                     " fra brønden. Det kan også være en ulempe at placere en brønd ved foden af en bakke, da" +
                     " spildevand eller lignende kan løbe ned og forurene vandet i brønden. ");
-    Article engineArticle = new Article("Artikel om motorer",
+    Article engineArticle = new Article("motorer",
             "De to mest anvendte typer af motorer er dieselmotorer, og elmotorer. Prisklassen på disse" +
                     " to typer af motorer er omtrent den samme. Dieselmotoren bruger diesel som brændstof." +
                     " Elmotoren bruger elektricitet for at køre. Dette kan opnås med en tilslutning til en" +
@@ -70,20 +70,36 @@ public class Game
     private void createRooms()
     {
         ArrayList<Article> articles = new ArrayList<Article>();
-        Room start, cityCenter, library, wellSite, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank;
+        Room start, cityCenter, library, wellSite, street, blacksmith, carpenter, egdeOfCity, mechanic, riverbank, mason;
         start = new Room("Du er i dit hus og overvejer hvordan du skal løse byens vand problem");
         cityCenter = new Room("Du er i by centeret");
         library = new Library("Du er i byens bibliotek, her burde du kunne finde alt den nødvendige viden for at løse dit problem", articles);
-        wellSite = new WellSite("Det her er et perfekt sted for at bygge en brøn");
+        wellSite = new WellSite("Det her er et perfekt sted for at bygge en brønd");
         street = new Room("Du er i en gade som kan føre dig ud til alle butikker som kan give dig de nødvendige ressursor");
         blacksmith = new Room("Du er ved smeden");
-        carpenter = new Room("Du er ved tømrene");
+        carpenter = new Room("Du er ved tømrerne");
         egdeOfCity = new Room("Du er ved udkanten af byen");
         mechanic = new Room("Du er ved mekanikeren");
         riverbank = new Room("Du er ved flodbredden");
+        mason = new Room("Du er ved muren");
 
         blacksmith.addItem(bucket);
         blacksmith.addItem(mekPump);
+        blacksmith.addItem(handPump);
+        start.addItem(shovel);
+        carpenter.addItem(planks);
+        carpenter.addItem(liningTree);
+        mechanic.addItem(dieselEngine);
+        mechanic.addItem(elEngine);
+        mason.addItem(liningStone);
+        mason.addItem(liningBrick);
+        mason.addItem(liningConcrete);
+
+        library.addItem(wellArticle);
+        library.addItem(liningArticle);
+        library.addItem(pumpArticle);
+        library.addItem(wellPlacement);
+        library.addItem(engineArticle);
 
         start.setExit("syd", cityCenter);
         cityCenter.setExit("nord", start);
@@ -97,6 +113,8 @@ public class Game
         egdeOfCity.setExit("nord", mechanic);
         egdeOfCity.setExit("vest", street);
         egdeOfCity.setExit("syd", riverbank);
+        egdeOfCity.setExit("øst", mason);
+        mason.setExit("vest", egdeOfCity);
         library.setExit("øst", cityCenter);
         wellSite.setExit("nord", cityCenter);
         blacksmith.setExit("syd", street);
@@ -159,6 +177,10 @@ public class Game
             // See the inventory
             invent.printInventory();
         }
+        else if (commandWord == CommandWord.READ) {
+            // read article
+            readArticle(command);
+        }
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
@@ -198,6 +220,7 @@ public class Game
         else {
             invent.addToInventory(nItem);        // #¤# add to inventory needs to be made
             currentRoom.RemoveItem(itemName);    // #¤# removes item from the room
+            currentRoom.PrintItems();
         }
 
     }
@@ -216,18 +239,18 @@ public class Game
         }
 
         String itemName = command.getSecondWord();
-/*
-        Item nItem = inventory.getItem(itemName); // #¤# takes a string with the name of an item in the inventory and returns
+
+        Items nItem = invent.getItemFromInventory(itemName); // #¤# takes a string with the name of an item in the inventory and returns
                                                   // the item, to be made in inventory
 
         if (nItem == null) {
             System.out.println("Det er ikke i din besidelse!");
         }
         else {
-            currentRoom.addToInventory(nItem);   // #¤# add to room, needs to be made
-            inventory.removeFromInventory(nItem);// #¤# removes item from the inventory
+            currentRoom.addItem(nItem);   // #¤# add to room, needs to be made
+            currentRoom.PrintItems();
+            //inventory.removeFromInventory(nItem);// #¤# removes item from the inventory
         }
- */
     }
 
     private void goRoom(Command command) 
@@ -248,6 +271,32 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             currentRoom.PrintItems();
+        }
+    }
+/*
+  readArticle()
+  Input:   command  obj. containing 2 strings commandWord and secondWord
+  Output:  void
+  Side-effect: An Item is taken from the inventory and put in the room
+*/
+
+    private void readArticle(Command command)
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("læs hvad?");
+            return;
+        }
+
+        String itemName = command.getSecondWord();
+
+        Items nItem = currentRoom.GetItem(itemName); // #¤# takes a string with the name of an item in the inventory and returns
+        // the item, to be made in inventory
+
+        if (nItem == null || !(nItem instanceof Article)) {
+            System.out.println("Det er ikke en artikel!");
+        }
+        else {
+            currentRoom.ReadArticle(nItem.name);
         }
     }
 

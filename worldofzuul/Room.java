@@ -52,15 +52,14 @@ public class Room {
 
     public Items RemoveItem(String name) {
         if (!(ItemsArrayList.size() == 0)) {
-            for (int i = 0; ItemsArrayList.size() < i; i++) {
-                if (ItemsArrayList.get(i).name == name) {
+            for (int i = 0; i<ItemsArrayList.size(); i++) {
+                if (ItemsArrayList.get(i).name.equals(name)) {
                     Items items = ItemsArrayList.get(i);
                     ItemsArrayList.remove(i);
                     return items;
                 }
-                else System.out.println("Der er ikke ting i dette rum");
             }
-        }
+        } else {System.out.println("Der er ikke ting i dette rum");}
         return null;
     }
     public void PrintItems(){
@@ -77,26 +76,38 @@ public class Room {
             System.out.println("Der er ikke ting i dette rum");
         }
     }
+
+    public void ReadArticle(String name){
+        if (!(ItemsArrayList.size() == 0))
+        {
+            for (int i = 0; i<ItemsArrayList.size(); i++)
+            {
+                if(ItemsArrayList.get(i).name.equals(name)){
+                    System.out.println(ItemsArrayList.get(i).description);
+                }
+
+            }
+        }
+        else
+        {
+            System.out.println("Der er ikke ting i dette rum");
+        }
+    }
+
     public Items GetItem(String name){
-        String tn ="";
         Items item;
         if (!(ItemsArrayList.size() == 0))
         {
             for (int i = 0; i<ItemsArrayList.size(); i++)
             {
                 item = ItemsArrayList.get(i);
-                tn = item.name;
-                if (tn.equals(name)){
+                if (item.name.equals(name)){
                     return item;
                 }
             }
-            return null;
         }
-        else
-        {
-            return null;
-        }
-    }
+        return null;
+     }
 
 }
 

@@ -54,6 +54,28 @@ public class Inventory {
         }
     }
 
+    public Items getItemFromInventory(String item){
+        if (!(inventory.size() == 0)){
+            for (int i = 0; i<inventory.size(); i++) {
+                if (inventory.get(i).name.equals(item)) {
+                    Items items = inventory.get(i);
+                    inventory.remove(i);
+                    return items;
+                }
+                else {
+
+                    return null;
+                }
+            }
+
+        }
+        else {
+
+            return null;
+        }
+        return null;
+    }
+
     //print inventory
     public void printInventory(){
         if (inventory.size() != 0){
