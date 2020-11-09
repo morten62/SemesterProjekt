@@ -24,7 +24,7 @@ class WinCondition {
 
     float uponWellValue = 0.1f;
 
-    public float scoreMultiplier;
+    public float scoreMultiplier = 1f;
 
 
     WinCondition(){
@@ -63,7 +63,7 @@ public class WellSite extends Room {
     }
 
     //run through the win conditions and return the total value of the score
-    public int returnScore(int score) throws Exception{
+    public float finishGame(){
 
         //check all of the liningstypes
         if (winCondition.ligningType == Lining.noLining){
@@ -79,7 +79,7 @@ public class WellSite extends Room {
             winCondition.scoreMultiplier *= winCondition.brickLiningValue;
         }
         else {
-            throw new Exception("Unable to come decide liningType in WellSite.java");
+            System.out.println("Unable to come decide liningType in WellSite.java");
         }
 
         //check how the player take the water up from the well
@@ -95,7 +95,7 @@ public class WellSite extends Room {
                     winCondition.scoreMultiplier *= winCondition.dieselValue;
                 }
                 else {
-                    throw new Exception("Unable to decide on the Enginetype in WellSite.java");
+                    System.out.println("Unable to decide on the Enginetype in WellSite.java");
                 }
             }
             else {
@@ -110,71 +110,6 @@ public class WellSite extends Room {
             winCondition.scoreMultiplier *= winCondition.uponWellValue;
         }
 
-        //return the score
-        return (int)((float)score * winCondition.scoreMultiplier);
-
-
-        /*
-        if (winCondition.ligningType == Lining.wood){
-            if (winCondition.isThereAHole && winCondition.isThereABucket){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.handPump){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.diesel){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.electrical){
-                //win
-            }
-        }
-
-        else if (winCondition.ligningType == Lining.stone || winCondition.ligningType == Lining.brick){
-            if (winCondition.isThereAHole && winCondition.isThereABucket){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.handPump){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.diesel){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.electrical){
-                //win
-            }
-        }
-
-        else if (winCondition.ligningType == Lining.concrete){
-            if (winCondition.isThereAHole && winCondition.isThereABucket){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.handPump){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.diesel){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.electrical){
-                //win
-            }
-        }
-
-        else if (winCondition.ligningType == Lining.noLining){
-            if (winCondition.isThereAHole && winCondition.isThereABucket){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.handPump){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.diesel){
-                //win
-            }
-            else if (!winCondition.isThereAHole && winCondition.pumpType == Pump.mechanicPump && winCondition.engineType == Engine.electrical){
-                //win
-            }
-        }
-        */
+        return 100.0f * winCondition.scoreMultiplier;
     }
-
 }
