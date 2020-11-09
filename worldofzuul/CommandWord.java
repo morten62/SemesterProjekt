@@ -1,8 +1,17 @@
+/**
+ * Legal words to use in the game
+ *
+ *
+ * @author Orig. + Morten
+ * @version 1.1
+ */
 package worldofzuul;
 
 public enum CommandWord
 {
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
+    GO("gå"), QUIT("quit"), HELP("hjælp"), UNKNOWN("?"),
+    PICKUP("tag"), PUTDOWN("læg"), SEEINVENTORY("se"),
+    USEITEM("brug"), READ("læs"), FINISH("færdig");
     
     private String commandString;
     
