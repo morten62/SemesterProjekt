@@ -1,5 +1,4 @@
 package worldofzuul;
-
 import java.util.ArrayList;
 
 public class Game
@@ -9,6 +8,7 @@ public class Game
     public WellSite wellSite = new WellSite("Det her er et perfekt sted for at bygge en brønd");
     private Lining lining;
     Inventory invent = new Inventory();
+    Quiz q = new Quiz();
 
     // list of usable items, that can be added to inventory
     Items shovel = new Items("skovl","Bruges til at grave med.");
@@ -25,6 +25,7 @@ public class Game
 
     Article wellArticle = new Article("brøndbeskrivelse",
             "En brønd er en udgravning i jorden, der kan bruges til at opnå en vandforsyning." +
+                    " En brønd kan fores med materialer som træ, sten og beton. Dette kan undlades men vil gøre" +
                     " En brønd kan fores med materialer som træ, sten og beton. Dette kan undlades men vil gøre" +
                     " strukturen ustabil. Der findes forskellige måder at udvinde vandet på. Den mest simple måde" +
                     " er at hente vand op med en spand. Dette kan dog også gøres ved hjælp af en pumpe." +
@@ -152,7 +153,9 @@ public class Game
     }
 
     public void play() 
-    {            
+    {
+        q.createFile();
+        q.startQuiz();
         printWelcome();
 
                 
@@ -162,6 +165,7 @@ public class Game
             finished = processCommand(command);
         }
         System.out.println("Tak for at du spillede. Farvel.");
+        q.stopWriter();
     }
 
     private void printWelcome()
@@ -215,6 +219,8 @@ public class Game
             try {
                 System.out.println("Din Score er: ");
                 System.out.println(wellSite.finishGame());
+                q.startQuiz();
+                wantToQuit = true;
             }
             catch (Exception e){
                 System.out.println("Du opfylder ikke alle kravene for spillet");
