@@ -1,5 +1,6 @@
 package worldofzuul;
 
+//enumerators for the different options
 enum Lining {wood, stone, concrete, brick, noLining}
 enum Pump {mechanicPump, handPump, noPump}
 enum Engine {electrical, diesel, noEngine}
@@ -17,6 +18,7 @@ class WinCondition {
     float stoneLiningValue = 1.5f;
     float brickLiningValue = 1.7f;
 
+    //ways to get water values
     float handPumpValue = 1f;
     float bucketValue = 0.2f;
     float electricalValue = 2.5f;
@@ -26,14 +28,13 @@ class WinCondition {
 
     public float scoreMultiplier = 1f;
 
-
     WinCondition(){
         this.ligningType = Lining.noLining;
         this.pumpType = Pump.noPump;
         this.engineType = Engine.noEngine;
     }
 }
-
+//Wellsite extends from Room, this room calculates the final score
 public class WellSite extends Room {
     WinCondition winCondition = new WinCondition();
     public WellSite(String description){
