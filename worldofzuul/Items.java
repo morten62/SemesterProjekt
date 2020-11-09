@@ -1,5 +1,6 @@
 package worldofzuul;
 
+// This class is used to create the objects the user can interact with
 public class Items{
      String name;
      String description;
@@ -10,8 +11,5 @@ public class Items{
 
     }
 
-    public String showDescription(){
-        return description;
 
-    }
 }
