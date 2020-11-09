@@ -62,16 +62,7 @@ public class Inventory {
                     inventory.remove(i);
                     return items;
                 }
-                else {
-
-                    return null;
-                }
             }
-
-        }
-        else {
-
-            return null;
         }
         return null;
     }

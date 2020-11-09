@@ -195,12 +195,14 @@ public class Game
         System.out.println();
         System.out.println("Dine mulige kommandoer er:");
         parser.showCommands();
+        System.out.println(currentRoom.printExitString());
+
     }
-/*
-  getItem()
-  Input:   command  obj. containing 2 strings commandWord and secondWord
-  Output:  void
-  Side-effect: An Item is taken from the room and put in the inventory
+/**
+*  getItem()
+*  Input:   command  obj. containing 2 strings commandWord and secondWord
+*  Output:  void
+*  Side-effect: An Item is taken from the room and put in the inventory
 */
     private void getItem(Command command)
     {
@@ -224,11 +226,11 @@ public class Game
         }
 
     }
-/*
-  putItem()
-  Input:   command  obj. containing 2 strings commandWord and secondWord
-  Output:  void
-  Side-effect: An Item is taken from the inventory and put in the room
+/**
+*  putItem()
+*  Input:   command  obj. containing 2 strings commandWord and secondWord
+*  Output:  void
+*  Side-effect: An Item is taken from the inventory and put in the room
 */
 
     private void putItem(Command command)
@@ -253,31 +255,11 @@ public class Game
         }
     }
 
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Gå hvor?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        Room nextRoom = currentRoom.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("Du kan ikke gå den vej!");
-        }
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            currentRoom.PrintItems();
-        }
-    }
-/*
-  readArticle()
-  Input:   command  obj. containing 2 strings commandWord and secondWord
-  Output:  void
-  Side-effect: An Item is taken from the inventory and put in the room
+/**
+*  readArticle()
+*  Input:   command  obj. containing 2 strings commandWord and secondWord
+*  Output:  void
+*  Side-effect: An Article is displayed from currentRoom
 */
 
     private void readArticle(Command command)
@@ -297,6 +279,27 @@ public class Game
         }
         else {
             currentRoom.ReadArticle(nItem.name);
+        }
+    }
+
+    private void goRoom(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Gå hvor?");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("Du kan ikke gå den vej!");
+        }
+        else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.PrintItems();
         }
     }
 
