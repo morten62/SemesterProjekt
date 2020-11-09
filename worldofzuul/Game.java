@@ -108,7 +108,7 @@ public class Game
         egdeOfCity = new Room("Du er ved udkanten af byen");
         mechanic = new Room("Du er ved mekanikeren");
         riverbank = new Room("Du er ved flodbredden");
-        mason = new Room("Du er ved muren");
+        mason = new Room("Du er ved mureren");
 
         blacksmith.addItem(bucket);
         blacksmith.addItem(mekPump);
@@ -221,7 +221,6 @@ public class Game
             }
 
         }
-
         return wantToQuit;
     }
 
@@ -235,7 +234,7 @@ public class Game
     }
 
 
-/*
+/**
   getItem()
   Input:   command  obj. containing 2 strings commandWord and secondWord
   Output:  void
@@ -253,7 +252,7 @@ public class Game
         Items nItem = currentRoom.GetItem(itemName); // #¤# takes a string with the name of an item in the room and returns
                                                      // the item to be made in room
 
-        if (nItem == null) {
+        if (nItem == null || (nItem instanceof Article)) {
             System.out.println("Det er ikke her!");
         }
         else {
@@ -263,7 +262,7 @@ public class Game
         }
 
     }
-/*
+/**
   putItem()
   Input:   command  obj. containing 2 strings commandWord and secondWord
   Output:  void

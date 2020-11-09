@@ -61,8 +61,8 @@ public class Room {
                     return items;
                 }
             }
-        } else
-            {System.out.println("Der er ikke ting i dette rum");}
+        }
+        else {System.out.println("Der er ikke ting i dette rum");}
         return null;
     }
     public void PrintItems(){
