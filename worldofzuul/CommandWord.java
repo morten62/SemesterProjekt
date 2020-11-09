@@ -1,3 +1,10 @@
+/**
+ * Legal words to use in the game
+ *
+ *
+ * @author Orig. + Morten
+ * @version 1.1
+ */
 package worldofzuul;
 
 public enum CommandWord
