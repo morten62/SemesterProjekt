@@ -1,38 +1,29 @@
 package worldofzuul;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
-
 public class Room {
     private String description;
     private HashMap<String, Room> exits;
-
     public ArrayList<Items> ItemsArrayList = new ArrayList<Items>();
-
     public Room(String description) { //Jeg har tilføjet Arraylist
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
     public Room(String description, ArrayList<Items> ItemsArrayList) { //Jeg har tilføjet Arraylist
         this.ItemsArrayList = ItemsArrayList; //Arraylisten vises også når man kommer ind i et rum
         this.description = description;
         exits = new HashMap<String, Room>();
     }
-
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
-
     public String getShortDescription() {
         return description;
     }
-
     public String getLongDescription() {
         return description + ". " + getExitString();
     }
-
     private String getExitString() {
         String returnString = "Udgange:";
         Set<String> keys = exits.keySet();
@@ -47,13 +38,11 @@ public class Room {
     public Room getExit(String direction) {
         return exits.get(direction);
     }
-
     public void addItem(Items items) {
         ItemsArrayList.add(items);
-    }
-
-    public Items RemoveItem(String name) {
-        if (!(ItemsArrayList.size() == 0)) {
+    } //Metode til at tilføjer genstande til arraylisten
+    public Items RemoveItem(String name) { //Denne fjerner genstande fra arraylisten.
+        if (!(ItemsArrayList.size() == 0)) { //if statement som enten printer "Der er ikke ting i dette rum" ud hvis der er tomt i rummet, eller loopet gennemgåes som vil fjerne en genstand.
             for (int i = 0; i<ItemsArrayList.size(); i++) {
                 if (ItemsArrayList.get(i).name.equals(name)) {
                     Items items = ItemsArrayList.get(i);
@@ -79,7 +68,6 @@ public class Room {
             System.out.println("Der er ikke ting i dette rum");
         }
     }
-
     public void ReadArticle(String name){
         if (!(ItemsArrayList.size() == 0))
         {
@@ -95,7 +83,6 @@ public class Room {
             System.out.println("Der er ikke ting i dette rum");
         }
     }
-
     public Items GetItem(String name){
         Items item;
         if (!(ItemsArrayList.size() == 0))
@@ -107,14 +94,5 @@ public class Room {
             }
         }
         return null;
-     }
-
+    }
 }
-
-
-
-
-
-
-
-
