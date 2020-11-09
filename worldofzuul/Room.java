@@ -41,7 +41,9 @@ public class Room {
         }
         return returnString;
     }
-
+    public String printExitString(){
+        return getExitString();
+    }
     public Room getExit(String direction) {
         return exits.get(direction);
     }
@@ -59,7 +61,8 @@ public class Room {
                     return items;
                 }
             }
-        } else {System.out.println("Der er ikke ting i dette rum");}
+        }
+        else {System.out.println("Der er ikke ting i dette rum");}
         return null;
     }
     public void PrintItems(){
@@ -85,7 +88,6 @@ public class Room {
                 if(ItemsArrayList.get(i).name.equals(name)){
                     System.out.println(ItemsArrayList.get(i).description);
                 }
-
             }
         }
         else
@@ -98,11 +100,9 @@ public class Room {
         Items item;
         if (!(ItemsArrayList.size() == 0))
         {
-            for (int i = 0; i<ItemsArrayList.size(); i++)
-            {
-                item = ItemsArrayList.get(i);
-                if (item.name.equals(name)){
-                    return item;
+            for (Items items : ItemsArrayList) {
+                if (items.name.equals(name)) {
+                    return items;
                 }
             }
         }

@@ -1,5 +1,4 @@
 package worldofzuul;
-
 import java.util.ArrayList;
 
 public class Game
@@ -9,6 +8,7 @@ public class Game
     public WellSite wellSite = new WellSite("Det her er et perfekt sted for at bygge en brønd");
     private Lining lining;
     Inventory invent = new Inventory();
+    Quiz q = new Quiz();
 
     // list of usable items, that can be added to inventory
     Items shovel = new Items("skovl","Bruges til at grave med.");
@@ -25,6 +25,7 @@ public class Game
 
     Article wellArticle = new Article("brøndbeskrivelse",
             "En brønd er en udgravning i jorden, der kan bruges til at opnå en vandforsyning." +
+                    " En brønd kan fores med materialer som træ, sten og beton. Dette kan undlades men vil gøre" +
                     " En brønd kan fores med materialer som træ, sten og beton. Dette kan undlades men vil gøre" +
                     " strukturen ustabil. Der findes forskellige måder at udvinde vandet på. Den mest simple måde" +
                     " er at hente vand op med en spand. Dette kan dog også gøres ved hjælp af en pumpe." +
@@ -108,7 +109,7 @@ public class Game
         egdeOfCity = new Room("Du er ved udkanten af byen");
         mechanic = new Room("Du er ved mekanikeren");
         riverbank = new Room("Du er ved flodbredden");
-        mason = new Room("Du er ved muren");
+        mason = new Room("Du er ved mureren");
 
         blacksmith.addItem(bucket);
         blacksmith.addItem(mekPump);
@@ -152,7 +153,9 @@ public class Game
     }
 
     public void play() 
-    {            
+    {
+        q.createFile();
+        q.startQuiz();
         printWelcome();
 
                 
@@ -162,6 +165,7 @@ public class Game
             finished = processCommand(command);
         }
         System.out.println("Tak for at du spillede. Farvel.");
+        q.stopWriter();
     }
 
     private void printWelcome()
@@ -215,13 +219,14 @@ public class Game
             try {
                 System.out.println("Din Score er: ");
                 System.out.println(wellSite.finishGame());
+                q.startQuiz();
+                wantToQuit = true;
             }
             catch (Exception e){
                 System.out.println("Du opfylder ikke alle kravene for spillet");
             }
 
         }
-
         return wantToQuit;
     }
 
@@ -235,7 +240,7 @@ public class Game
     }
 
 
-/*
+/**
   getItem()
   Input:   command  obj. containing 2 strings commandWord and secondWord
   Output:  void
@@ -253,7 +258,7 @@ public class Game
         Items nItem = currentRoom.GetItem(itemName); // #¤# takes a string with the name of an item in the room and returns
                                                      // the item to be made in room
 
-        if (nItem == null) {
+        if (nItem == null || (nItem instanceof Article)) {
             System.out.println("Det er ikke her!");
         }
         else {
@@ -263,7 +268,7 @@ public class Game
         }
 
     }
-/*
+/**
   putItem()
   Input:   command  obj. containing 2 strings commandWord and secondWord
   Output:  void
@@ -292,31 +297,11 @@ public class Game
         }
     }
 
-    private void goRoom(Command command) 
-    {
-        if(!command.hasSecondWord()) {
-            System.out.println("Gå hvor?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        Room nextRoom = currentRoom.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("Du kan ikke gå den vej!");
-        }
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            currentRoom.PrintItems();
-        }
-    }
-/*
-  readArticle()
-  Input:   command  obj. containing 2 strings commandWord and secondWord
-  Output:  void
-  Side-effect: An Item is taken from the inventory and put in the room
+/**
+*  readArticle()
+*  Input:   command  obj. containing 2 strings commandWord and secondWord
+*  Output:  void
+*  Side-effect: An Article is displayed from currentRoom
 */
 
     private void readArticle(Command command)
@@ -336,6 +321,27 @@ public class Game
         }
         else {
             currentRoom.ReadArticle(nItem.name);
+        }
+    }
+
+    private void goRoom(Command command)
+    {
+        if(!command.hasSecondWord()) {
+            System.out.println("Gå hvor?");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("Du kan ikke gå den vej!");
+        }
+        else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+            currentRoom.PrintItems();
         }
     }
 
