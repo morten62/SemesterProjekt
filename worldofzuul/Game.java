@@ -1,3 +1,12 @@
+/**
+ * The main class of the game
+ * Instances of the Items, Article and Room class and
+ *
+ * @author Rasmus, Simon, Mike, Farhiya, Morten
+ * @version 1.1
+ */
+
+
 package worldofzuul;
 import java.util.ArrayList;
 
@@ -55,6 +64,13 @@ public class Game
                     " Elmotoren bruger elektricitet for at køre. Dette kan opnås med en tilslutning til en" +
                     " strømkilde, heriblandt er den mest anvendte et batteri.");
     //WinCondition winCondition = new WinCondition();
+
+/**
+     useItem()
+     Input:   item to e used
+     Output:  void
+     Side-effect: The wellSite is updated with the given item
+*/
     public void useItems(Items items){
 
         if (items.name.equals(mekPump.name)){
@@ -95,7 +111,12 @@ public class Game
         parser = new worldofzuul.Parser();
     }
 
-
+    /**
+     createRooms()
+     Input:   void
+     Output:  void
+     Side-effect: The rooms are initiated, items are pt in rooms and the connections between rooms are made
+     */
     private void createRooms()
     {
         ArrayList<Article> articles = new ArrayList<Article>();
@@ -151,6 +172,12 @@ public class Game
         riverbank.setExit("nord", egdeOfCity);
         currentRoom = start;
     }
+    /**
+     play()
+     Input:   void
+     Output:  void
+     Side-effect: The games main loop
+     */
 
     public void play() 
     {
@@ -158,7 +185,6 @@ public class Game
         q.startQuiz();
         printWelcome();
 
-                
         boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
@@ -255,15 +281,15 @@ public class Game
 
         String itemName = command.getSecondWord();
 
-        Items nItem = currentRoom.GetItem(itemName); // #¤# takes a string with the name of an item in the room and returns
-                                                     // the item to be made in room
+        Items nItem = currentRoom.GetItem(itemName); // takes a string with the name of an item in the room and returns
+                                                     // the item
 
         if (nItem == null || (nItem instanceof Article)) {
             System.out.println("Det er ikke her!");
         }
         else {
-            invent.addToInventory(nItem);        // #¤# add to inventory needs to be made
-            currentRoom.RemoveItem(itemName);    // #¤# removes item from the room
+            invent.addToInventory(nItem);        // add to inventory
+            currentRoom.RemoveItem(itemName);    // removes item from the room
             currentRoom.PrintItems();
         }
 
