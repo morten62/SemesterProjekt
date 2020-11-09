@@ -72,7 +72,7 @@ public class WellSite extends Room {
         else if (winCondition.ligningType == Lining.wood){
             winCondition.scoreMultiplier *= winCondition.woodLiningValue;
         }
-        else if (winCondition.ligningType == Lining.stone){
+        else if (winCondition.ligningType == Lining.stone ||winCondition.ligningType == Lining.concrete) {
             winCondition.scoreMultiplier *= winCondition.stoneLiningValue;
         }
         else if (winCondition.ligningType == Lining.brick){
